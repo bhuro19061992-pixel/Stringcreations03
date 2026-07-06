@@ -52,7 +52,22 @@ module.exports = {
           '3': 'hsl(var(--chart-3))',
           '4': 'hsl(var(--chart-4))',
           '5': 'hsl(var(--chart-5))'
-        }
+        },
+        canvas: '#0A1520',
+        'canvas-alt': '#0F1E2E',
+        'canvas-deep': '#050B12',
+        ink: '#E8F1F5',
+        'ink-soft': '#B8CAD4',
+        teal: '#4FC3D9',
+        'teal-deep': '#2A7A8E',
+        royal: '#3A4FCC',
+        silver: '#C5D4DC',
+        gold: '#D4A960'
+      },
+      fontFamily: {
+        serif: ['"Cormorant Garamond"', 'serif'],
+        script: ['"Great Vibes"', 'cursive'],
+        sans: ['Outfit', 'sans-serif']
       },
       keyframes: {
         'accordion-down': {
