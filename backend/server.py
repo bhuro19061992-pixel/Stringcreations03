@@ -214,6 +214,76 @@ async def delete_product(product_id: str, _: bool = Depends(require_admin)):
     return {"ok": True}
 
 
+# --- Reviews ---
+
+@api_router.get("/reviews", response_model=List[Review])
+async def list_reviews():
+    docs = await db.reviews.find(
+        {"approved": True},
+        {"_id": 0}
+    ).sort([("created_at", -1)]).to_list(500)
+
+    return [Review(**d) for d in docs]
+
+
+@api_router.get("/admin/reviews", response_model=List[Review])
+async def admin_reviews(_: bool = Depends(require_admin)):
+    docs = await db.reviews.find(
+        {},
+        {"_id": 0}
+    ).sort([("created_at", -1)]).to_list(500)
+
+    return [Review(**d) for d in docs]
+
+
+@api_router.post("/reviews", response_model=Review)
+async def create_review(payload: ReviewCreate):
+    review = Review(**payload.model_dump())
+    await db.reviews.insert_one(review.model_dump())
+    return review
+
+
+@api_router.put("/reviews/{review_id}", response_model=Review)
+async def approve_review(
+    review_id: str,
+    payload: ReviewUpdate,
+    _: bool = Depends(require_admin)
+):
+    updates = {
+        k: v
+        for k, v in payload.model_dump().items()
+        if v is not None
+    }
+
+    result = await db.reviews.update_one(
+        {"id": review_id},
+        {"$set": updates}
+    )
+
+    if result.matched_count == 0:
+        raise HTTPException(status_code=404, detail="Review not found")
+
+    doc = await db.reviews.find_one(
+        {"id": review_id},
+        {"_id": 0}
+    )
+
+    return Review(**doc)
+
+
+@api_router.delete("/reviews/{review_id}")
+async def delete_review(
+    review_id: str,
+    _: bool = Depends(require_admin)
+):
+    result = await db.reviews.delete_one({"id": review_id})
+
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Review not found")
+
+    return {"ok": True}
+
+
 # --- Settings ---
 
 async def _get_or_create_settings() -> Settings:
