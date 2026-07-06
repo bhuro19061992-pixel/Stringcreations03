@@ -128,6 +128,37 @@ class SettingsUpdate(BaseModel):
     turnaround: Optional[str] = None
 
 
+# ---------- Reviews ----------
+
+class Review(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    name: str
+    city: str = ""
+    rating: int = 5
+    review: str
+    product_id: str = ""
+    product_name: str = ""
+    image: str = ""
+    approved: bool = False
+    created_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+
+
+class ReviewCreate(BaseModel):
+    name: str
+    city: str = ""
+    rating: int
+    review: str
+    product_id: str = ""
+    product_name: str = ""
+    image: str = ""
+
+
+class ReviewUpdate(BaseModel):
+    approved: Optional[bool] = None
+
+
 # ---------- Routes ----------
 
 @api_router.get("/")
