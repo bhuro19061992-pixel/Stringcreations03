@@ -14,7 +14,27 @@ export const api = {
   // public
   getSettings: () => axios.get(`${API}/settings`).then((r) => r.data),
   getProducts: () => axios.get(`${API}/products`).then((r) => r.data),
+ // Reviews (Public)
+  getReviews: () =>
+    axios.get(`${API}/reviews`).then((r) => r.data),
 
+  createReview: (body) =>
+    axios.post(`${API}/reviews`, body).then((r) => r.data),
+
+  // Reviews (Admin)
+  getAdminReviews: () =>
+    axios.get(`${API}/admin/reviews`, authHeaders()).then((r) => r.data),
+
+  approveReview: (id, approved = true) =>
+    axios
+      .put(`${API}/reviews/${id}`, { approved }, authHeaders())
+      .then((r) => r.data),
+
+  deleteReview: (id) =>
+    axios
+      .delete(`${API}/reviews/${id}`, authHeaders())
+      .then((r) => r.data),
+  
   // admin
   verifyAdmin: (token) =>
     axios
