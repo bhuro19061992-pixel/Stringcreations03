@@ -5,6 +5,7 @@ import {
 } from "lucide-react";
 import { api } from "@/lib/api";
 import { ProductCard, ProductDialog } from "@/components/ProductCard";
+import TypesCatalog from "@/components/TypesCatalog";
 
 const LOGO_URL =
   "https://customer-assets.emergentagent.com/job_fiber-art-market/artifacts/9fpghvge_inbound4584828131840693190.png";
@@ -73,6 +74,7 @@ const NavBar = ({ scrolled, settings }) => {
   const [open, setOpen] = useState(false);
   const links = [
     { label: "Works", href: "#works" },
+    { label: "Types", href: "#types" },
     { label: "About", href: "#about" },
     { label: "Process", href: "#process" },
     { label: "Commissions", href: "#commissions" },
@@ -703,6 +705,7 @@ export default function Landing() {
       <Hero settings={settings} productCount={products.length} />
       <Marquee />
       <Works products={products} onOpenProduct={setOpenProduct} settings={settings} />
+      <TypesCatalog settings={settings} />
       <AboutStringArt settings={settings} />
       <Process />
       <Commissions settings={settings} />
