@@ -1,8 +1,18 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { toast } from "sonner";
 import {
-  LogOut, Plus, Trash2, Save, Image as ImageIcon, X, Star,
-  Package, Settings as SettingsIcon, Lock, Loader2,
+  LogOut,
+Plus,
+Trash2,
+Save,
+Image as ImageIcon,
+X,
+Star,
+Package,
+Settings as SettingsIcon,
+Lock,
+Loader2,
+MessageSquare,
 } from "lucide-react";
 import { api, getAdminToken, setAdminToken, clearAdminToken, fileToBase64 } from "@/lib/api";
 
