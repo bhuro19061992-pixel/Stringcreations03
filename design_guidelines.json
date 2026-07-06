@@ -1,0 +1,120 @@
+{
+  "theme": "Light",
+  "archetype": "1 (Organic & Earthy)",
+  "domain_context": "Marketing / Portfolio Landing Page for String Art",
+  "brand_name": "String Creation 03",
+  "design_philosophy": "Artisanal, precise, warm, and highly textural. The design must evoke the physical tension of thread pulled tightly around steel nails. High contrast between the crisp, dark 'thread' typography and the soft, organic 'canvas' backgrounds. No default AI-slop styles. No generic gradients.",
+  "typography": {
+    "fonts": {
+      "heading": "Cormorant Garamond, serif",
+      "body": "Outfit, sans-serif",
+      "accent": "Outfit, sans-serif"
+    },
+    "rules": {
+      "h1": "text-5xl sm:text-6xl+ font-light tracking-tighter leading-none text-ink",
+      "h2": "text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-ink",
+      "h3": "text-xl sm:text-2xl font-light text-ink/80",
+      "body": "text-base sm:text-lg font-light tracking-wide text-ink/70 leading-relaxed",
+      "overline": "text-xs font-semibold tracking-[0.2em] uppercase text-rust mb-4 block"
+    },
+    "cdn_import": "@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap');"
+  },
+  "colors": {
+    "background": {
+      "base": "#FDFBF7",
+      "alt": "#F4F0E6",
+      "dark_block": "#1A1A1A"
+    },
+    "text": {
+      "primary": "#1A1A1A",
+      "secondary": "#4A4A4A",
+      "inverse": "#FDFBF7",
+      "accent": "#B05B3B"
+    },
+    "brand": {
+      "rust": "#B05B3B",
+      "forest": "#2C402E",
+      "ink": "#1A1A1A"
+    },
+    "borders": {
+      "subtle": "rgba(26, 26, 26, 0.1)",
+      "strong": "rgba(26, 26, 26, 1)"
+    }
+  },
+  "layout_and_spacing": {
+    "spacing_scale": "Use generous spacing. Standard section padding should be py-24 or py-32. Container margins should be mx-auto px-6 md:px-12.",
+    "gallery_grid": "Mode A (Tetris Grid). grid-cols-1 md:grid-cols-12 gap-6 or gap-8. Make images span different column counts (e.g., col-span-4, col-span-8) to create visual tension and asymmetry. Never make it a boring equal square grid.",
+    "borders": "Use sharp 1px solid borders to mimic the tautness of thread. Cards/images should not have heavy rounded corners (max rounded-md or rounded-none) to retain an architectural, crafted feel.",
+    "hero_overlay": "For any text over images, use max bg-black/40 or a delicate gradient overlay. The art must breathe."
+  },
+  "motion_and_interaction": {
+    "hover_states": "Images should have a subtle scale-up effect (transform hover:scale-[1.02] transition-transform duration-500 ease-out). Links should have a 1px underline that scales on hover.",
+    "buttons": "WhatsApp CTA must be highly visible. Solid background (Rust or Ink) with high contrast text. Hover state must darken slightly or reverse out.",
+    "animations": "Subtle fade-in-up for text blocks as they enter the viewport."
+  },
+  "components_strategy": {
+    "general": "Pure HTML/Tailwind for all structural layouts to achieve the organic, asymmetrical bento grids.",
+    "icons": "lucide-react (stroke-width: 1.5 to mimic thread).",
+    "cta": "WhatsApp floating action button pinned to bottom-right, plus inline buttons mapped to `wa.me` links."
+  },
+  "images": {
+    "hero_background": {
+      "url": "https://images.unsplash.com/photo-1565213785958-d5db75b246a9?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTN8MHwxfHNlYXJjaHwzfHxzdHJpbmclMjBhcnQlMjBnZW9tZXRyaWN8ZW58MHx8fHwxNzgzMzAyOTAwfDA&ixlib=rb-4.1.0&q=85",
+      "description": "Gray and black intricate intersecting geometric lines. Use as a large hero background or texture.",
+      "category": "hero"
+    },
+    "gallery_1": {
+      "url": "https://images.unsplash.com/photo-1742942965475-25d3b7bf2bfa?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTN8MHwxfHNlYXJjaHwyfHxzdHJpbmclMjBhcnQlMjBnZW9tZXRyaWN8ZW58MHx8fHwxNzgzMzAyOTAwfDA&ixlib=rb-4.1.0&q=85",
+      "description": "Geometric spiral string art. High contrast.",
+      "category": "portfolio"
+    },
+    "gallery_2": {
+      "url": "https://images.unsplash.com/photo-1771189255393-f87a6323fdce?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTN8MHwxfHNlYXJjaHw0fHxzdHJpbmclMjBhcnQlMjBnZW9tZXRyaWN8ZW58MHx8fHwxNzgzMzAyOTAwfDA&ixlib=rb-4.1.0&q=85",
+      "description": "Red rope geometric structure. Good for striking visual offset.",
+      "category": "portfolio"
+    },
+    "process_thread": {
+      "url": "https://images.unsplash.com/photo-1542044801-30d3e45ae49a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzN8MHwxfHNlYXJjaHwxfHxzcG9vbCUyMG9mJTIwdGhyZWFkJTIwY3JhZnR8ZW58MHx8fHwxNzgzMzAyOTAwfDA&ixlib=rb-4.1.0&q=85",
+      "description": "Assorted color thread spools.",
+      "category": "process"
+    },
+    "artist_working": {
+      "url": "https://images.unsplash.com/photo-1584661156681-540e80a161d3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2MjJ8MHwxfHNlYXJjaHwzfHxhcnRpc3QlMjB3b3JraW5nJTIwY2FudmFzfGVufDB8fHx8MTc4MzMwMjkwMHww&ixlib=rb-4.1.0&q=85",
+      "description": "Artist working conceptually. Use for About section.",
+      "category": "about"
+    }
+  },
+  "pages_and_sections": [
+    {
+      "name": "Hero",
+      "description": "Large elegant typography introducing 'String Creation 03'. Use the hero background image with a light overlay (bg-white/80 or bg-[#FDFBF7]/90) so the string texture is visible but text is readable. Main CTA: 'Commission a Piece' pointing to WhatsApp."
+    },
+    {
+      "name": "Featured Works (Portfolio)",
+      "description": "Asymmetrical image grid. Images span different heights/widths. Caption text below images should be small, tracked out, uppercase (e.g., 'GEOMETRIC MANDALA // 24x24')."
+    },
+    {
+      "name": "The Process (How it's made)",
+      "description": "Step-by-step layout using large numbers (01, 02, 03). Use the process_thread image. Wood, Nails, Thread, Time. Use thin borders between steps."
+    },
+    {
+      "name": "Custom Orders & Commissions",
+      "description": "Dark block section (bg-[#1A1A1A] with text-[#FDFBF7]) to create high contrast. List options: Portraits, Name Plates, Logos, Mandalas. Button: 'Start a Custom Order' (wa.me link)."
+    },
+    {
+      "name": "About the Artist",
+      "description": "Use the artist_working image. Offset the image and text blocks. Storytelling focus using Cormorant Garamond for a pull quote."
+    },
+    {
+      "name": "Testimonials",
+      "description": "Clean text-focused bento grid. Use italic Cormorant Garamond for the quotes to feel personal and handwritten."
+    },
+    {
+      "name": "Footer",
+      "description": "Massive 'Let's Talk' heading. Direct WhatsApp link, social links. Minimalist bottom bar."
+    }
+  ],
+  "testing": {
+    "data_testid_requirements": "All interactive elements, buttons, and links must have a data-testid attribute in kebab-case (e.g., data-testid='whatsapp-hero-cta', data-testid='gallery-image-1')."
+  }
+}
