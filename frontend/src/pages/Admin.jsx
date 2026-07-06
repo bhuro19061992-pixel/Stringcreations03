@@ -465,6 +465,150 @@ const SettingsTab = () => {
   );
 };
 
+const ReviewsTab = () => {
+  const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const loadReviews = async () => {
+    try {
+      const data = await api.getAdminReviews();
+      setReviews(data);
+    } catch (err) {
+      toast.error("Failed to load reviews.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    loadReviews();
+  }, []);
+
+  const approveReview = async (id) => {
+    try {
+      await api.approveReview(id, true);
+      toast.success("Review approved.");
+      loadReviews();
+    } catch {
+      toast.error("Unable to approve review.");
+    }
+  };
+
+  const deleteReview = async (id) => {
+    if (!window.confirm("Delete this review?")) return;
+
+    try {
+      await api.deleteReview(id);
+      toast.success("Review deleted.");
+      loadReviews();
+    } catch {
+      toast.error("Unable to delete review.");
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="py-20 flex justify-center">
+        <Loader2 className="w-6 h-6 animate-spin" />
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-6">
+
+      <div>
+        <h2 className="font-serif text-3xl">
+          Customer Reviews
+        </h2>
+
+        <p className="text-ink-soft">
+          Approve or delete customer reviews.
+        </p>
+      </div>
+      {reviews.length === 0 ? (
+  <div className="border border-ink/10 rounded-sm p-8 text-center text-ink-soft">
+    No reviews found.
+  </div>
+) : (
+  <div className="grid gap-5">
+    {reviews.map((review) => (
+      <div
+        key={review.id}
+        className="border border-ink/10 rounded-sm bg-canvas-alt/40 p-6"
+      >
+        <div className="flex items-start justify-between gap-6">
+
+          <div className="flex-1">
+
+            <div className="flex items-center gap-3 mb-2">
+
+              <h3 className="font-semibold text-lg">
+                {review.name}
+              </h3>
+
+              <span className="text-xs text-ink-soft">
+                {review.city}
+              </span>
+
+            </div>
+
+            <div className="flex items-center gap-1 mb-3">
+
+              {Array.from({ length: review.rating }).map((_, i) => (
+                <Star
+                  key={i}
+                  className="w-4 h-4 text-yellow-500 fill-yellow-500"
+                />
+              ))}
+
+            </div>
+
+            <p className="text-ink-soft whitespace-pre-wrap">
+              {review.review}
+            </p>
+
+            {review.product_name && (
+              <div className="mt-4 text-sm text-teal">
+                Product : {review.product_name}
+              </div>
+            )}
+
+            <div className="mt-3 text-xs text-ink-soft">
+              {new Date(review.created_at).toLocaleDateString()}
+            </div>
+
+          </div>
+
+          <div className="flex flex-col gap-2">
+
+            {!review.approved && (
+              <button
+                onClick={() => approveReview(review.id)}
+                className="px-4 py-2 rounded-full bg-teal text-canvas-deep text-xs uppercase tracking-widest"
+              >
+                Approve
+              </button>
+            )}
+
+            <button
+              onClick={() => deleteReview(review.id)}
+              className="px-4 py-2 rounded-full border border-red-400 text-red-400 text-xs uppercase tracking-widest"
+            >
+              Delete
+            </button>
+
+          </div>
+
+        </div>
+      </div>
+    ))}
+  </div>
+)}
+ </div>
+  );
+};
+
 /* ---------- Admin shell ---------- */
 
 export default function Admin() {
@@ -524,8 +668,8 @@ export default function Admin() {
   <MessageSquare className="w-4 h-4" strokeWidth={1.5} />
   Reviews
 </button>
-          <button
-              onClick={() => setTab("settings")}
+<button
+  onClick={() => setTab("settings")}
               className={`px-4 py-2 rounded-full text-[11px] uppercase tracking-widest-2 flex items-center gap-2 ${
                 tab === "settings" ? "bg-teal text-canvas-deep" : "text-ink-soft hover:text-teal"
               }`}
